@@ -1,31 +1,29 @@
 {
   "files": {
-    "main.css": "/weatherApi/static/css/main.aeb03bf2.css",
-    "main.js": "/weatherApi/static/js/main.0bbf3797.js",
-    "static/js/772.3e9f2921.chunk.js": "/weatherApi/static/js/772.3e9f2921.chunk.js",
-    "static/js/347.6c057c45.chunk.js": "/weatherApi/static/js/347.6c057c45.chunk.js",
-    "static/js/582.a4577fbc.chunk.js": "/weatherApi/static/js/582.a4577fbc.chunk.js",
-    "static/js/169.6ab02157.chunk.js": "/weatherApi/static/js/169.6ab02157.chunk.js",
-    "static/js/702.e4176e15.chunk.js": "/weatherApi/static/js/702.e4176e15.chunk.js",
-    "static/js/859.3c9ee2b0.chunk.js": "/weatherApi/static/js/859.3c9ee2b0.chunk.js",
-    "static/js/199.05dc1317.chunk.js": "/weatherApi/static/js/199.05dc1317.chunk.js",
-    "static/js/300.d6c8c229.chunk.js": "/weatherApi/static/js/300.d6c8c229.chunk.js",
-    "static/js/323.00e033a2.chunk.js": "/weatherApi/static/js/323.00e033a2.chunk.js",
+    "main.css": "/weatherApi/static/css/main.5ad40626.css",
+    "main.js": "/weatherApi/static/js/main.7408e8a2.js",
+    "static/js/772.cb4892ef.chunk.js": "/weatherApi/static/js/772.cb4892ef.chunk.js",
+    "static/js/582.06493bba.chunk.js": "/weatherApi/static/js/582.06493bba.chunk.js",
+    "static/js/169.27b61106.chunk.js": "/weatherApi/static/js/169.27b61106.chunk.js",
+    "static/js/702.8b06c4c9.chunk.js": "/weatherApi/static/js/702.8b06c4c9.chunk.js",
+    "static/js/859.304ee0ab.chunk.js": "/weatherApi/static/js/859.304ee0ab.chunk.js",
+    "static/js/199.2d8944b1.chunk.js": "/weatherApi/static/js/199.2d8944b1.chunk.js",
+    "static/js/774.ae5d32ec.chunk.js": "/weatherApi/static/js/774.ae5d32ec.chunk.js",
+    "static/css/417.49d36db5.chunk.css": "/weatherApi/static/css/417.49d36db5.chunk.css",
     "index.html": "/weatherApi/index.html",
-    "main.aeb03bf2.css.map": "/weatherApi/static/css/main.aeb03bf2.css.map",
-    "main.0bbf3797.js.map": "/weatherApi/static/js/main.0bbf3797.js.map",
-    "772.3e9f2921.chunk.js.map": "/weatherApi/static/js/772.3e9f2921.chunk.js.map",
-    "347.6c057c45.chunk.js.map": "/weatherApi/static/js/347.6c057c45.chunk.js.map",
-    "582.a4577fbc.chunk.js.map": "/weatherApi/static/js/582.a4577fbc.chunk.js.map",
-    "169.6ab02157.chunk.js.map": "/weatherApi/static/js/169.6ab02157.chunk.js.map",
-    "702.e4176e15.chunk.js.map": "/weatherApi/static/js/702.e4176e15.chunk.js.map",
-    "859.3c9ee2b0.chunk.js.map": "/weatherApi/static/js/859.3c9ee2b0.chunk.js.map",
-    "199.05dc1317.chunk.js.map": "/weatherApi/static/js/199.05dc1317.chunk.js.map",
-    "300.d6c8c229.chunk.js.map": "/weatherApi/static/js/300.d6c8c229.chunk.js.map",
-    "323.00e033a2.chunk.js.map": "/weatherApi/static/js/323.00e033a2.chunk.js.map"
+    "main.5ad40626.css.map": "/weatherApi/static/css/main.5ad40626.css.map",
+    "main.7408e8a2.js.map": "/weatherApi/static/js/main.7408e8a2.js.map",
+    "772.cb4892ef.chunk.js.map": "/weatherApi/static/js/772.cb4892ef.chunk.js.map",
+    "582.06493bba.chunk.js.map": "/weatherApi/static/js/582.06493bba.chunk.js.map",
+    "169.27b61106.chunk.js.map": "/weatherApi/static/js/169.27b61106.chunk.js.map",
+    "702.8b06c4c9.chunk.js.map": "/weatherApi/static/js/702.8b06c4c9.chunk.js.map",
+    "859.304ee0ab.chunk.js.map": "/weatherApi/static/js/859.304ee0ab.chunk.js.map",
+    "199.2d8944b1.chunk.js.map": "/weatherApi/static/js/199.2d8944b1.chunk.js.map",
+    "774.ae5d32ec.chunk.js.map": "/weatherApi/static/js/774.ae5d32ec.chunk.js.map",
+    "417.49d36db5.chunk.css.map": "/weatherApi/static/css/417.49d36db5.chunk.css.map"
   },
   "entrypoints": [
-    "static/css/main.aeb03bf2.css",
-    "static/js/main.0bbf3797.js"
+    "static/css/main.5ad40626.css",
+    "static/js/main.7408e8a2.js"
   ]
 }
