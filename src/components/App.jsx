@@ -1,11 +1,9 @@
-import { QueryParamsContext } from 'context/QueryParams';
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from '../components/SharedLayout/SharedLayout';
 import { ThemeContext } from '../context/ThemeContext';
-
+import { LanguageContext } from '../context/LanguageContext';
 const Home = lazy(() => import('pages/Home/Home'));
-const Settings = lazy(() => import('pages/Settings/Settings'));
 const Today = lazy(() => import('./Today/Today'));
 const TenDays = lazy(() => import('./TenDays/TenDays'));
 const TwoWeeks = lazy(() => import('./TwoWeeks/TwoWeeks'));
@@ -15,7 +13,7 @@ const ThreeDays = lazy(() => import('./ThreeDays/ThreeDays'));
 export const App = () => {
   return (
     <ThemeContext>
-      <QueryParamsContext>
+      <LanguageContext>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route path="/" element={<Home />}>
@@ -23,12 +21,11 @@ export const App = () => {
               <Route path="tomorrow" element={<Tomorrow />} />
               <Route path="3days" element={<ThreeDays />} />
               <Route path="10days" element={<TenDays />} />
-              <Route path="2weeks" element={<TwoWeeks/>} />
+              <Route path="2weeks" element={<TwoWeeks />} />
             </Route>
-            <Route path="/settings" element={<Settings />} />
           </Route>
         </Routes>
-      </QueryParamsContext>
+      </LanguageContext>
     </ThemeContext>
   );
 };

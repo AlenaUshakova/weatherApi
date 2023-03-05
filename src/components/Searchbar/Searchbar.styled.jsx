@@ -4,7 +4,7 @@ export const SearchbarBox = styled.div`
   top: 0;
   left: 0;
   position: sticky;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@ export const SearchbarBox = styled.div`
   padding-top: 12px;
   padding-bottom: 12px;
   color: #fff;
-  background-color: #96b4f5;
+  background-color: #2ca4f4;
   border-radius: 20px;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);

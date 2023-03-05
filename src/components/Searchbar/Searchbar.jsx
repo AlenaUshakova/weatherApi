@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { queryParams } from 'context/QueryParams';
 
 import {
@@ -12,18 +12,23 @@ import {
 // import { useNavigate } from 'react-router-dom';
 
 export const Searchbar = () => {
- 
-  const { setQuery } = useContext(queryParams);
+  const { query, setQuery } = useContext(queryParams);
   //  const navigate = useNavigate();
+  console.log(query);
 
-   const handleSubmit = e => {
-     e.preventDefault();
-     const { input } = e.target.elements;
-     setQuery(input.value);
-    //  navigate(`/home?querySearch=${input.value}`);
-     
-     e.target.reset();
-   };
+  const handleSubmit = e => {
+    e.preventDefault();
+    const { input } = e.target.elements;
+    if (input.value === '') {
+      return toast.error('Ви нічого не ввели для пошуку');
+    }
+    if (query === input.value.toLowerCase()) {
+      return toast.error(`Ви вже дивитесь результати пошуку  '${input.value}'`);
+    }
+
+    setQuery(input.value);
+    e.target.reset();
+  };
 
   return (
     <SearchbarBox>
@@ -36,7 +41,7 @@ export const Searchbar = () => {
           type="text"
           autoComplete="off"
           autoFocus
-          placeholder="Search cityes"
+          placeholder="Оберіть місто"
           name="input"
           // value={query1}
           // onChange={handleQueryChange}
@@ -45,4 +50,3 @@ export const Searchbar = () => {
     </SearchbarBox>
   );
 };
-

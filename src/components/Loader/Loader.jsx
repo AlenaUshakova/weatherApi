@@ -10,12 +10,12 @@ export const Loader = () => {
       wrapperStyle={{ position: 'absolute', top: '45%', left: '45%' }}
       wrapperClass="vortex-wrapper"
       colors={[
-        'orangered',
-        'orangered',
-        'orangered',
-        'orangered',
-        'orangered',
-        'orangered',
+        '#2ca4f4',
+        '#2ca4f4',
+        '#2ca4f4',
+        '#2ca4f4',
+        '#2ca4f4',
+        '#2ca4f4',
       ]}
     />
   );

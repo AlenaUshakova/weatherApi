@@ -2,20 +2,20 @@ import { useContext, useEffect, useState } from 'react';
 // import { useParams } from 'react-router-dom';
 import { queryParams } from 'context/QueryParams';
 import { weatherByCurr } from 'services/api-weather';
-import { format } from 'date-fns';
-import { ru } from 'date-fns/locale';
 import {
   ContainerTomor,
-  TomorIinfo,
-  TomorTableInfo,
-  TomorTable,
-  TomorImg,
+  
 } from './Tomorrow.styled';
+import { SunSet } from 'components/SunSet/SunSet';
+import { HourWeather } from 'components/HourWeather/HourWeather';
+import { MainWeather } from 'components/MainWeather/MainWeather';
+import { themeContext } from 'context/ThemeContext';
 
  const Tomorrow = () => {
   const [resultApCurr, setResultApCurr] = useState(null);
   const { query } = useContext(queryParams);
-
+   const { theme } = useContext(themeContext);
+   
   useEffect(() => {
     if (query === '') {
       return;
@@ -44,35 +44,32 @@ import {
     return;
   }
 
-  const formattedDateStr = format(
-    new Date(resultApCurr.forecast.forecastday[1].date),
-    'EEEE d MMMM',
-    { locale: ru }
-  );
-
-  const pressureMb = resultApCurr.forecast.forecastday[1].hour.reduce(
-    (acc, el) => acc + el.pressure_mb / 24,
-    0
-  );
-  const fillLike = resultApCurr.forecast.forecastday[1].hour.reduce(
-    (acc, el) => acc + el.feelslike_c / 24,
-    0
-  );
-  const clouds = resultApCurr.forecast.forecastday[1].hour.reduce(
-    (acc, el) => acc + el.cloud / 24,
-    0
-  );
-  const windSpeed = resultApCurr.forecast.forecastday[1].hour.reduce(
-    (acc, el) => acc + el.wind_kph / 24,
-    0
-  );
-
   return (
     <>
       {query && (
-        <ContainerTomor>
+        <ContainerTomor theme={theme}>
           <h1>Погода {resultApCurr.location.name} на завтра</h1>
-          <TomorIinfo>
+          <SunSet
+            sun={convertTimeTo24HourFormat(
+              resultApCurr.forecast.forecastday[1].astro.sunrise
+            )}
+            set={convertTimeTo24HourFormat(
+              resultApCurr.forecast.forecastday[1].astro.sunset
+            )}
+          >
+            <MainWeather object={resultApCurr.forecast.forecastday[1]} />
+          </SunSet>
+          <HourWeather object={resultApCurr.forecast.forecastday[1]} />
+        </ContainerTomor>
+      )}
+    </>
+  );
+};
+
+export default Tomorrow;
+
+// {
+  /* <TomorIinfo>
             <div
               style={{
                 display: 'flex',
@@ -267,11 +264,5 @@ import {
                 </tr>
               </tbody>
             </table>
-          </TomorTable>
-        </ContainerTomor>
-      )}
-    </>
-  );
-};
-
-export default Tomorrow;
+          </TomorTable> */
+// }

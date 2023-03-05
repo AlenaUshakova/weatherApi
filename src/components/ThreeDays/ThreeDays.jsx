@@ -3,21 +3,23 @@ import { useContext, useEffect, useState } from 'react';
 import { queryParams } from 'context/QueryParams';
 import { weatherByCurr } from 'services/api-weather';
 import { format } from 'date-fns';
-import { ru } from 'date-fns/locale';
+import { uk } from 'date-fns/locale';
 import {
-  ContainerTomor,
+  ContainerThreeMain,
   ContainerThree,
-  TomorIinfo,
-  TomorTableInfo,
-  TomorTable,
-  TomorImg,
+
 } from './ThreeDays.styled';
+import { SunSet } from 'components/SunSet/SunSet';
+import { MainWeather } from 'components/MainWeather/MainWeather';
+import { HourWeather } from 'components/HourWeather/HourWeather';
+import { themeContext } from 'context/ThemeContext';
 
 const ThreeDays = () => {
   const [resultApCurr, setResultApCurr] = useState(null);
   const { query } = useContext(queryParams);
   const [cardClick, setCardClick] = useState(false);
   const [obj, setObj] = useState({});
+    const { theme } = useContext(themeContext);
   console.log(obj);
 
   useEffect(() => {
@@ -55,30 +57,17 @@ const ThreeDays = () => {
     return;
   }
 
-  // const formattedDateStr = format(
-  //   new Date(resultApCurr.forecast.forecastday[1].date),
-  //   'EEEE d MMMM',
-  //   { locale: ru }
-  // );
-
-  const pressureMb = obj?.hour?.reduce(
-    (acc, el) => acc + el.pressure_mb / 24,
-    0
-  );
-  const fillLike = obj?.hour?.reduce((acc, el) => acc + el.feelslike_c / 24, 0);
-  const clouds = obj?.hour?.reduce((acc, el) => acc + el.cloud / 24, 0);
-  const windSpeed = obj?.hour?.reduce((acc, el) => acc + el.wind_kph / 24, 0);
 
   return (
     <>
       {query && (
-        <ContainerTomor>
-          <h1>Погода {resultApCurr.location.name} на 3 дня </h1>
+        <ContainerThreeMain theme={theme}>
+          <h1>Погода {resultApCurr.location.name} на 3 дні </h1>
           <ul>
             {resultApCurr.forecast.forecastday.map(el => (
               <li key={el.date_epoch} onClick={() => handleClick(el.date)}>
                 <p>
-                  {format(new Date(el.date), 'EEEE d MMMM', { locale: ru })}
+                  {format(new Date(el.date), 'EEEE d MMMM', { locale: uk })}
                 </p>
                 <img
                   src={el.day.condition.icon}
@@ -86,14 +75,33 @@ const ThreeDays = () => {
                   width={50}
                 />
 
-                <p>Макс С: {el.day.maxtemp_c} </p>
-                <p>Мин С: {el.day.mintemp_c} </p>
+                <p>Макс °С: {Math.round(el.day.maxtemp_c)} </p>
+                <p>Мін °С: {Math.round(el.day.mintemp_c)} </p>
               </li>
             ))}
           </ul>
           {cardClick && (
             <ContainerThree>
-              <TomorIinfo>
+              <SunSet
+                sun={convertTimeTo24HourFormat(obj.astro.sunrise)}
+                set={convertTimeTo24HourFormat(obj.astro.sunrise)}
+              >
+                <MainWeather object={obj} />
+              </SunSet>
+              <HourWeather object={obj} />
+            </ContainerThree>
+          )}
+        </ContainerThreeMain>
+      )}
+    </>
+  );
+};
+
+export default ThreeDays;
+
+
+//  {
+   /* <TomorIinfo>
                 <div
                   style={{
                     display: 'flex',
@@ -249,13 +257,5 @@ const ThreeDays = () => {
                     </tr>
                   </tbody>
                 </table>
-              </TomorTable>
-            </ContainerThree>
-          )}
-        </ContainerTomor>
-      )}
-    </>
-  );
-};
-
-export default ThreeDays;
+              </TomorTable> */
+//  }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ContainerToday = styled.div`
-  border: 1px solid #96b4f5;
+  border: 1px solid #2ca4f4;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
@@ -10,6 +10,7 @@ export const ContainerToday = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 
   p {
     margin: 0;
@@ -19,6 +20,7 @@ export const ContainerToday = styled.div`
     font-size: 20px;
     text-align: center;
     margin-bottom: 15px;
+    color: ${props => (props.theme === 'dark' ? 'white' : 'black')};
   }
 `;
 
