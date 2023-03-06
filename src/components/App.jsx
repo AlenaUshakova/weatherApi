@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from '../components/SharedLayout/SharedLayout';
 import { ThemeContext } from '../context/ThemeContext';
 import { LanguageContext } from '../context/LanguageContext';
+
 const Home = lazy(() => import('pages/Home/Home'));
 const Today = lazy(() => import('./Today/Today'));
 const TenDays = lazy(() => import('./TenDays/TenDays'));

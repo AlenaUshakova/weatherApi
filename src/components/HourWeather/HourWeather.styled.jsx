@@ -14,7 +14,6 @@ export const HourWeatherTable = styled.div`
   table th,
   table td {
     padding: 10px;
-    /* border: 1px solid #2a2a2a; */
     text-align: center;
   }
 `;

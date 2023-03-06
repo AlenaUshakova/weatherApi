@@ -10,11 +10,11 @@ export const ContainerToday = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
 
   p {
     margin: 0;
   }
+
   h1 {
     margin: 0;
     font-size: 20px;
@@ -33,6 +33,7 @@ export const Tomor = styled.div`
   margin: 0;
   padding: 0;
   list-style: none;
+
   p {
     text-align: left;
   }
@@ -41,17 +42,18 @@ export const Tomor = styled.div`
 export const TomorItem = styled.div`
   flex-basis: calc((100% - 110px) / 12);
   text-align: center;
-  /* border: 1px solid red; */
   font-size: xx-small;
-
   background-color: ${props => (props.day === 1 ? 'yellow' : 'gray')};
+
   p {
     text-align: center;
   }
+
   :nth-child(2n) {
     display: none;
   }
 `;
+
 export const TomorIinfo = styled.div`
   background-color: #ece7e7c0;
   padding: 20px;
@@ -62,20 +64,24 @@ export const TomorIinfo = styled.div`
   gap: 50px;
   border-radius: 20px;
   width: 100%;
+
   h2 {
     margin: 0;
     text-align: center;
     font-size: 32px;
     margin-bottom: 20px;
   }
+
   p {
     margin: 0;
     text-align: left;
     font-size: x-large;
   }
 `;
+
 export const TomorTable = styled.div`
   margin-top: 30px;
+
   table {
     background-color: #ece7e7c0;
     border-collapse: collapse;
@@ -86,10 +92,10 @@ export const TomorTable = styled.div`
   table th,
   table td {
     padding: 10px;
-    /* border: 1px solid #2a2a2a; */
     text-align: center;
   }
 `;
+
 export const TomorTableInfo = styled.div`
   table {
     border-collapse: collapse;
@@ -99,7 +105,6 @@ export const TomorTableInfo = styled.div`
   table th,
   table td {
     padding: 10px;
-    /* border: 1px solid #2a2a2a; */
     text-align: left;
     border-radius: 5px;
   }

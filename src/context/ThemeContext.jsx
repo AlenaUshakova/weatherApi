@@ -3,8 +3,6 @@ import { createContext, useLayoutEffect } from 'react';
 
 export const themeContext = createContext('lt');
 
-// const LS_KEY2 = 'saveln';
-
 export const ThemeContext = ({ children }) => {
    const [theme, setTheme] = useLocalStorage('theme', 'light');
    useLayoutEffect(() => {

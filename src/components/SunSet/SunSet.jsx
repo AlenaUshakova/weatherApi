@@ -1,10 +1,11 @@
-
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './sunSet.scss';
+import { languageContext } from '../../context/LanguageContext';
 
-export const SunSet = ({ sun, set,children}) => {
+export const SunSet = ({ sun, set, children }) => {
   const [sunriseChecked, setSunriseChecked] = useState(true);
   const [sunsetChecked, setSunsetChecked] = useState(false);
+  const { value } = useContext(languageContext);
 
   const handleSunriseChange = () => {
     setSunriseChecked(true);
@@ -29,7 +30,6 @@ export const SunSet = ({ sun, set,children}) => {
         name="time"
         id="sunrise"
         className="input-ani"
-        // checked
         checked={sunriseChecked}
         onChange={handleSunriseChange}
       />
@@ -89,16 +89,33 @@ export const SunSet = ({ sun, set,children}) => {
         </div>
         {children}
         <div className="heavens">
-          <label
-            htmlFor="sunrise"
-            className="sunrise"
-            data-title="Схід сонця"
-          ></label>
-          <label
-            htmlFor="sunset"
-            className="sunset"
-            data-title="Захід сонця"
-          ></label>
+          {value === 'en' ? (
+            <>
+              <label
+                htmlFor="sunrise"
+                className="sunrise"
+                data-title="Sunrise"
+              ></label>
+              <label
+                htmlFor="sunset"
+                className="sunset"
+                data-title="Sunset"
+              ></label>
+            </>
+          ) : (
+            <>
+              <label
+                htmlFor="sunrise"
+                className="sunrise"
+                data-title="Схід сонця"
+              ></label>
+              <label
+                htmlFor="sunset"
+                className="sunset"
+                data-title="Захід сонця"
+              ></label>
+            </>
+          )}
         </div>
         <div className="clouds"></div>
       </div>

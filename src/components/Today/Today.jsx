@@ -6,18 +6,19 @@ import { SunSet } from 'components/SunSet/SunSet';
 import { HourWeather } from 'components/HourWeather/HourWeather';
 import { MainWeather } from 'components/MainWeather/MainWeather';
 import { themeContext } from 'context/ThemeContext';
+import { languageContext } from '../../context/LanguageContext';
 
 const Today = () => {
   const [resultApCurr, setResultApCurr] = useState(null);
   const { query } = useContext(queryParams);
   const { theme } = useContext(themeContext);
+    const { value } = useContext(languageContext);
 
   useEffect(() => {
     if (query === '') {
       return;
     }
     weatherByCurr(query, 1).then(res => {
-      console.log(res);
       setResultApCurr(res);
     });
   }, [query]);
@@ -44,7 +45,11 @@ const Today = () => {
     <>
       {query && (
         <ContainerToday theme={theme}>
-          <h1 >Погода {resultApCurr.location.name} сьогодні</h1>
+          <h1>
+            {value === 'en'
+              ? `Weather ${resultApCurr.location.name} today`
+              : `Погода ${resultApCurr.location.name} сьогодні`}
+          </h1>
           <SunSet
             sun={convertTimeTo24HourFormat(
               resultApCurr.forecast.forecastday[0].astro.sunrise
@@ -63,113 +68,3 @@ const Today = () => {
 };
 
 export default Today;
-
-
-// {
-  /* <TomorTable>
-            <table>
-              <thead>
-                <tr>
-                  <th rowSpan="2"></th>
-                </tr>
-                <tr>
-                  {resultApCurr.forecast.forecastday[0].hour.map(
-                    (el, index) => {
-                      if (index % 2 !== 0) {
-                        return (
-                          <th key={el.time_epoch} day={el.is_day}>
-                            {el.time.substring(11, 16)}
-                            <img
-                              src={el.condition.icon}
-                              alt={el.condition.text}
-                              width={35}
-                            />
-                          </th>
-                        );
-                      }
-                      return null;
-                    }
-                  )}
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td>Влажность</td>
-                  {resultApCurr.forecast.forecastday[0].hour.map(
-                    (el, index) => {
-                      if (index % 2 !== 0) {
-                        return (
-                          <td key={el.time_epoch} day={el.is_day}>
-                            {el.humidity} %
-                          </td>
-                        );
-                      }
-                      return null;
-                    }
-                  )}
-                </tr>
-                <tr>
-                  <td>Температура</td>
-                  {resultApCurr.forecast.forecastday[0].hour.map(
-                    (el, index) => {
-                      if (index % 2 !== 0) {
-                        return (
-                          <td key={el.time_epoch} day={el.is_day}>
-                            {Math.round(el.temp_c)} C
-                          </td>
-                        );
-                      }
-                      return null;
-                    }
-                  )}
-                </tr>
-                <tr>
-                  <td>Видимость</td>
-                  {resultApCurr.forecast.forecastday[0].hour.map(
-                    (el, index) => {
-                      if (index % 2 !== 0) {
-                        return (
-                          <td key={el.time_epoch} day={el.is_day}>
-                            {el.vis_km} км
-                          </td>
-                        );
-                      }
-                      return null;
-                    }
-                  )}
-                </tr>
-                <tr>
-                  <td>Вероятность осадков</td>
-                  {resultApCurr.forecast.forecastday[0].hour.map(
-                    (el, index) => {
-                      if (index % 2 !== 0) {
-                        return (
-                          <td key={el.time_epoch} day={el.is_day}>
-                            {el.chance_of_rain} %
-                          </td>
-                        );
-                      }
-                      return null;
-                    }
-                  )}
-                </tr>
-                <tr>
-                  <td>Скорость ветра</td>
-                  {resultApCurr.forecast.forecastday[0].hour.map(
-                    (el, index) => {
-                      if (index % 2 !== 0) {
-                        return (
-                          <td key={el.time_epoch} day={el.is_day}>
-                            {el.wind_kph} км/ч
-                          </td>
-                        );
-                      }
-                      return null;
-                    }
-                  )}
-                </tr>
-              </tbody>
-            </table>
-          </TomorTable> */
-// }

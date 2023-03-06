@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { queryParams } from 'context/QueryParams';
-
 import {
   SearchbarBox,
   SearchForm,
@@ -9,21 +8,30 @@ import {
   SearchFormBtnLabel,
   SearchFormInput,
 } from './Searchbar.styled';
-// import { useNavigate } from 'react-router-dom';
+import { languageContext } from '../../context/LanguageContext';
 
 export const Searchbar = () => {
   const { query, setQuery } = useContext(queryParams);
-  //  const navigate = useNavigate();
+  const { value } = useContext(languageContext);
+
   console.log(query);
 
   const handleSubmit = e => {
     e.preventDefault();
     const { input } = e.target.elements;
     if (input.value === '') {
-      return toast.error('Ви нічого не ввели для пошуку');
+      return toast.error(
+        value === 'en'
+          ? 'You have not entered anything to search'
+          : 'Ви нічого не ввели для пошуку'
+      );
     }
     if (query === input.value.toLowerCase()) {
-      return toast.error(`Ви вже дивитесь результати пошуку  '${input.value}'`);
+      return toast.error(
+        value === 'en'
+          ? `You are already viewing search results for '${input.value}'`
+          : `Ви вже дивитесь результати пошуку '${input.value}'`
+      );
     }
 
     setQuery(input.value);
@@ -41,10 +49,8 @@ export const Searchbar = () => {
           type="text"
           autoComplete="off"
           autoFocus
-          placeholder="Оберіть місто"
+          placeholder={`${value === 'en' ? 'Select city' : 'Оберіть місто'}`}
           name="input"
-          // value={query1}
-          // onChange={handleQueryChange}
         />
       </SearchForm>
     </SearchbarBox>

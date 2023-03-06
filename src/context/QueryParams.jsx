@@ -5,7 +5,6 @@ export const queryParams = createContext();
 
 const LS_KEY = 'city';
 
-
 export const QueryParamsContext = ({ children }) => {
   const [query, setQuery] = useLocalStorage(LS_KEY, '');
   return (

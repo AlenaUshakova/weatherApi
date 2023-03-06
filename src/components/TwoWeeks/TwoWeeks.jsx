@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
 import { queryParams } from 'context/QueryParams';
 import { weatherByCurr } from 'services/api-weather';
 import { format } from 'date-fns';
@@ -9,6 +8,7 @@ import { SunSet } from 'components/SunSet/SunSet';
 import { MainWeather } from 'components/MainWeather/MainWeather';
 import { HourWeather } from 'components/HourWeather/HourWeather';
 import { themeContext } from 'context/ThemeContext';
+import { languageContext } from '../../context/LanguageContext';
 
 const TwoWeeks = () => {
   const [resultApCurr, setResultApCurr] = useState(null);
@@ -16,14 +16,13 @@ const TwoWeeks = () => {
   const [cardClick, setCardClick] = useState(false);
   const [obj, setObj] = useState({});
   const { theme } = useContext(themeContext);
-  console.log(obj);
+  const { value } = useContext(languageContext);
 
   useEffect(() => {
     if (query === '') {
       return;
     }
     weatherByCurr(query, 14).then(res => {
-      console.log(res);
       setResultApCurr(res);
     });
   }, [query]);
@@ -58,16 +57,28 @@ const TwoWeeks = () => {
     <>
       {query && (
         <ContainerWeekMain theme={theme}>
-          <h1>Погода {resultApCurr.location.name} на 2 тижні </h1>
+          <h1>
+            {value === 'en'
+              ? `Weather ${resultApCurr.location.name} for 2 weeks`
+              : `Погода ${resultApCurr.location.name} на 2 тижні`}
+          </h1>
           <ul>
             {resultApCurr.forecast.forecastday.map(el => (
               <li key={el.date_epoch} onClick={() => handleClick(el.date)}>
                 <p>
-                  {format(new Date(el.date), 'EEEE d MMMM', { locale: uk })}
+                  {value === 'en'
+                    ? format(new Date(el.date), 'EEEE d MMMM')
+                    : format(new Date(el.date), 'EEEE d MMMM', { locale: uk })}
                 </p>
                 <img src={el.day.condition.icon} alt={el.day.condition.text} />
-                <p>Макс °С: {Math.round(el.day.maxtemp_c)} </p>
-                <p>Мін °С: {Math.round(el.day.mintemp_c)} </p>
+                <p>
+                  {value === 'en' ? 'Max' : 'Maкс'} °С:{' '}
+                  {Math.round(el.day.maxtemp_c)}
+                </p>{' '}
+                <p>
+                  {value === 'en' ? 'Min' : 'Мін'} °С:{' '}
+                  {Math.round(el.day.mintemp_c)}
+                </p>{' '}
               </li>
             ))}
           </ul>
@@ -75,7 +86,7 @@ const TwoWeeks = () => {
             <ContainerWeek>
               <SunSet
                 sun={convertTimeTo24HourFormat(obj.astro.sunrise)}
-                set={convertTimeTo24HourFormat(obj.astro.sunrise)}
+                set={convertTimeTo24HourFormat(obj.astro.sunset)}
               >
                 <MainWeather object={obj} />
               </SunSet>

@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
 import { queryParams } from 'context/QueryParams';
 import { weatherByCurr } from 'services/api-weather';
 import { format } from 'date-fns';
@@ -9,21 +8,21 @@ import { SunSet } from 'components/SunSet/SunSet';
 import { MainWeather } from 'components/MainWeather/MainWeather';
 import { HourWeather } from 'components/HourWeather/HourWeather';
 import { themeContext } from 'context/ThemeContext';
+import { languageContext } from '../../context/LanguageContext';
 
 const TenDays = () => {
   const [resultApCurr, setResultApCurr] = useState(null);
   const { query } = useContext(queryParams);
   const [cardClick, setCardClick] = useState(false);
   const [obj, setObj] = useState({});
-   const { theme } = useContext(themeContext);
-  console.log(obj);
+  const { theme } = useContext(themeContext);
+  const { value } = useContext(languageContext);
 
   useEffect(() => {
     if (query === '') {
       return;
     }
     weatherByCurr(query, 10).then(res => {
-      console.log(res);
       setResultApCurr(res);
     });
   }, [query]);
@@ -58,16 +57,28 @@ const TenDays = () => {
     <>
       {query && (
         <ContainerTenMain theme={theme}>
-          <h1>Погода {resultApCurr.location.name} на 10 днів </h1>
+          <h1>
+            {value === 'en'
+              ? `Weather ${resultApCurr.location.name} for 10 days`
+              : `Погода ${resultApCurr.location.name} на 10 днів`}
+          </h1>
           <ul>
             {resultApCurr.forecast.forecastday.map(el => (
               <li key={el.date_epoch} onClick={() => handleClick(el.date)}>
                 <p>
-                  {format(new Date(el.date), 'EEEE d MMMM', { locale: uk })}
+                  {value === 'en'
+                    ? format(new Date(el.date), 'EEEE d MMMM')
+                    : format(new Date(el.date), 'EEEE d MMMM', { locale: uk })}
                 </p>
                 <img src={el.day.condition.icon} alt={el.day.condition.text} />
-                <p>Макс °С: {Math.round(el.day.maxtemp_c)} </p>
-                <p>Мін °С: {Math.round(el.day.mintemp_c)} </p>
+                <p>
+                  {value === 'en' ? 'Max' : 'Maкс'} °С:{' '}
+                  {Math.round(el.day.maxtemp_c)}
+                </p>
+                <p>
+                  {value === 'en' ? 'Min' : 'Мін'} °С:{' '}
+                  {Math.round(el.day.mintemp_c)}
+                </p>
               </li>
             ))}
           </ul>
@@ -75,7 +86,7 @@ const TenDays = () => {
             <ContainerTen>
               <SunSet
                 sun={convertTimeTo24HourFormat(obj.astro.sunrise)}
-                set={convertTimeTo24HourFormat(obj.astro.sunrise)}
+                set={convertTimeTo24HourFormat(obj.astro.sunset)}
               >
                 <MainWeather object={obj} />
               </SunSet>

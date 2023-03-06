@@ -3,8 +3,6 @@ import useLocalStorage from 'Hooks/useLocalStorage';
 
 export const languageContext = createContext('en');
 
-
-
 export const LanguageContext = ({ children }) => {
   const [selectedOption, setSelectedOption] = useLocalStorage('ln', {
     value: 'en',
@@ -15,7 +13,6 @@ export const LanguageContext = ({ children }) => {
     { value: 'uk', label: 'UK' },
   ];
   const { value } = selectedOption;
-
 
   return (
     <languageContext.Provider

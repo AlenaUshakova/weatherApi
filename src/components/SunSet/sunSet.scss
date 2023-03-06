@@ -51,12 +51,20 @@ $easing: cubic-bezier(.25, 0, .1, 1);
 }
 
 #app {
-  width: 720px;
   height: $app-height;
-  @media screen and (min-width:1200px) {
-      width: $app-width;
+  width: 280px;
+  @media screen and (min-width: 480px) {
+    width: 440px;
+  }
+  
+  @media screen and (min-width: 768px) {
+    width: 720px;
+  }
 
-    }
+  @media screen and (min-width:1200px) {
+    width: $app-width;
+  }
+  
   padding: 0 2rem;
   display: flex;
   flex-direction: row;
@@ -75,21 +83,8 @@ $easing: cubic-bezier(.25, 0, .1, 1);
   }
   
   > .heavens  {
-    flex: 0 0 30%;
+    flex: 0 0 70%;
   }
-  
-  // &:before, &:after {
-  //   content: '';
-  //   position: absolute;
-  //   display: flex;
-  //   // flex-grow: 1;
-  //   width: 100vw;
-  //   height: 100vh;
-  //   left: calc(50% - 50vw);
-  //   top: calc(50% - 50vh);
-  //   z-index: -10;
-  //   @include transition;
-  // }
   
   &:before {
     background: linear-gradient(to bottom, #73DAF9, #E5F7FE);
@@ -150,7 +145,10 @@ $easing: cubic-bezier(.25, 0, .1, 1);
   
   &:first-child {
     &:after {
-      font-size: 2.5rem;
+      font-size: 1.1rem;
+          @media screen and (min-width: 768px) {
+              font-size: 2.5rem;
+            }
     }
     
     ~ .time {
@@ -500,12 +498,19 @@ $easing: cubic-bezier(.25, 0, .1, 1);
 
 .heavens {
   position: absolute;
-  width: 200px;
+  width: 150px;
   right: 0;
   top: 0;
   z-index: 10;
   height: 100%;
   overflow: hidden;
+    @media screen and (min-width: 480px) {
+      width: 200px;
+    }
+    
+    @media screen and (min-width: 768px) {
+      width: 200px;
+    }
 }
 
 [class^="sun"] {
@@ -520,7 +525,10 @@ $easing: cubic-bezier(.25, 0, .1, 1);
     width: 100%;
     margin: 2rem 0;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
+    @media screen and (min-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
   
   &:after {
@@ -561,8 +569,12 @@ $easing: cubic-bezier(.25, 0, .1, 1);
 }
 
 .sunrise:after {
-  width: 78px;
-  height: 78px;
+  width: 50px;
+  height: 50px;
+    @media screen and (min-width: 768px) {
+      width: 78px;
+      height: 78px;
+    }
   background: $color-sun;
   box-shadow: 0 0 0 1rem rgba($color-sun, 0.3);
 }
@@ -572,8 +584,12 @@ $easing: cubic-bezier(.25, 0, .1, 1);
     margin-bottom: 3rem;
   }
   &:after {
-    width: 52px;
-    height: 52px;
+    width: 32px;
+    height: 32px;
+    @media screen and (min-width: 768px) {
+      width: 52px;
+       height: 52px;
+    }
     background: $color-moon;
     box-shadow: 0 0 0 1rem rgba($color-moon, 0.3), 0 0 0 2rem rgba($color-moon, 0.15);
   }
@@ -837,66 +853,8 @@ body {
   align-items: center;
 }
 
-// html, body {
-//   width: 100%;
-//   height: 100%;
-//   margin: 0;
-//   padding: 0;
-//   overflow: hidden;
-// }
 
 *, *:before, *:after {
   box-sizing: border-box;
   position: relative;
 }
-
-// .tomorrow-info{
-//   position: relative;
-//   top: 0;
-//   right: 600px;
-//   z-index: 20;
-//   flex: 0 0 auto;
-//   color:rgb(255, 255, 255);
-//   text-shadow: 1px 1px 2px black;
-//     padding: 40px;
-//     text-align: center;
-//     display: flex;
-//     justify-content: center;
-//     max-width: 700px;
-//     gap: 90px;
-//     border-radius: 20px;
-//     width: 100%;
-//     h2 {
-//         margin: 0;
-//         text-align: center;
-//         font-size: 32px;
-//         margin-bottom: 20px;
-//       }
-    
-//       p {
-//         margin: 0;
-//         text-align: left;
-//         font-size: x-large;
-//       }
-// } 
-
-
-// .tomorrow-info-tab{
-//   table {
-//       border-collapse: collapse;
-//       font-size: 15px;
-//       width: 300px;
-//     }
-  
-//     table th,
-//     table td {
-//       padding: 5px;
-//       text-align: left;
-//       border-bottom: 1px solid white;
-//     }
-  
-//     table tr td:nth-child(2n) {
-//       text-align: center;
-//     }
-
-// }

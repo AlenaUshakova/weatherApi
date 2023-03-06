@@ -8,6 +8,7 @@ export const ContainerThreeMain = styled.div`
   padding: 20px;
   font-size: smaller;
   max-height: 100%;
+
   p {
     margin: 0;
   }
@@ -19,31 +20,41 @@ export const ContainerThreeMain = styled.div`
     margin-bottom: 15px;
     color: ${props => (props.theme === 'dark' ? 'white' : 'black')};
   }
+  
   ul {
     display: flex;
     font-size: xx-small;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
     margin: 0;
     margin-bottom: 20px;
     padding: 0;
     list-style: none;
 
+    @media screen and (min-width: 768px) {
+      gap: 10px;
+    }
+
     li {
       border-radius: 20px;
       border: 1px solid white;
       padding: 15px;
-      font-size: small;
+      font-size: x-small;
       display: flex;
       text-align: center;
       align-items: center;
       flex-direction: column;
-      gap: 10px;
+      width: 100px;
       background-color: #9ed5f8;
-      width: 180px;
       cursor: pointer;
       transition: scale 250ms linear, border 250ms linear;
+
+      @media screen and (min-width: 768px) {
+        gap: 10px;
+        width: 180px;
+        font-size: small;
+      }
 
       :hover,
       :focus {
@@ -55,10 +66,7 @@ export const ContainerThreeMain = styled.div`
 `;
 
 export const ContainerThree = styled.div`
-  /* border: 1px solid #2ca4f4; */
   border-radius: 20px;
-
-  /* padding: 20px; */
   font-size: smaller;
   display: flex;
   flex-direction: column;

@@ -1,19 +1,29 @@
 import { format } from 'date-fns';
 import { uk } from 'date-fns/locale';
 import { MainIinfo, MainIinfoTab, TomorImg } from './MainWeather.styled';
+import { languageContext } from '../../context/LanguageContext';
+import { useContext } from 'react';
 
-export const MainWeather = ({ object}) => {
-  const formattedDateStr = format(new Date(object.date), 'EEEE d MMMM', {
-    locale: uk,
-  });
+export const MainWeather = ({ object }) => {
+  const { value } = useContext(languageContext);
+
+  const formattedDateStr =
+    value === 'en'
+      ? format(new Date(object.date), 'EEEE d MMMM')
+      : format(new Date(object.date), 'EEEE d MMMM', {
+          locale: uk,
+      });
+  
   const pressureMb = object.hour.reduce(
     (acc, el) => acc + el.pressure_mb / 24,
     0
   );
+
   const fillLike = object.hour.reduce(
     (acc, el) => acc + el.feelslike_c / 24,
     0
   );
+
   const clouds = object.hour.reduce((acc, el) => acc + el.cloud / 24, 0);
   const windSpeed = object.hour.reduce((acc, el) => acc + el.wind_kph / 24, 0);
 
@@ -40,39 +50,46 @@ export const MainWeather = ({ object}) => {
         <table>
           <tbody>
             <tr>
-              <td>Температура °С</td>
+              <td>{value === 'en' ? 'Temperature' : 'Температура'} °С</td>
               <td>{Math.round(object.day.avgtemp_c)}</td>
             </tr>
             <tr>
-              <td>Відчувається як °С</td>
+              <td>
+                {value === 'en' ? 'Feels like' : 'Відчувається як'}
+                °С
+              </td>
               <td>{Math.round(fillLike)}</td>
             </tr>
             <tr>
-              <td>Хмарність %</td>
+              <td>{value === 'en' ? 'Cloudiness' : 'Хмарність'} %</td>
               <td>{Math.round(clouds)}</td>
             </tr>
             <tr>
-              <td>Вологість %</td>
+              <td>{value === 'en' ? 'Humidity' : 'Вологість'} %</td>
               <td>{object.day.avghumidity}</td>
             </tr>
             <tr>
-              <td>Тиск мм рт. ст.</td>
+              <td>
+                {value === 'en' ? 'Pressure mm hg.art' : 'Тиск мм рт.ст.'}
+              </td>
               <td>{(pressureMb * 0.75006).toFixed(0)} </td>
             </tr>
             <tr>
-              <td> Макс °С</td>
+              <td> {value === 'en' ? 'Max' : 'Макс'} °С</td>
               <td>{Math.round(object.day.maxtemp_c)}</td>
             </tr>
             <tr>
-              <td> Мін °С</td>
+              <td>{value === 'en' ? 'Min' : 'Мін'} °С</td>
               <td>{Math.round(object.day.mintemp_c)}</td>
             </tr>
             <tr>
-              <td> Індекс УФ</td>
+              <td> {value === 'en' ? 'UV index' : 'Індекс УФ'}</td>
               <td>{object.day.uv}</td>
             </tr>
             <tr>
-              <td> Швидкість вітру км/г</td>
+              <td>
+                {value === 'en' ? 'Wind speed km/h' : 'Швидкість вітру км/г'}
+              </td>
               <td>{Math.round(windSpeed)} </td>
             </tr>
           </tbody>
