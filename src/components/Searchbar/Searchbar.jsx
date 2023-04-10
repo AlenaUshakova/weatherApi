@@ -14,8 +14,6 @@ export const Searchbar = () => {
   const { query, setQuery } = useContext(queryParams);
   const { value } = useContext(languageContext);
 
-  console.log(query);
-
   const handleSubmit = e => {
     e.preventDefault();
     const { input } = e.target.elements;

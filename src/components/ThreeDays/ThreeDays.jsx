@@ -17,7 +17,8 @@ const ThreeDays = () => {
   const [obj, setObj] = useState({});
   const { theme } = useContext(themeContext);
   const { value } = useContext(languageContext);
-
+  
+ 
   useEffect(() => {
     if (query === '') {
       return;
